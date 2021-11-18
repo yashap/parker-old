@@ -11,4 +11,6 @@ yarn serve
 
 # Open the Expo menu in iOS simulator
 CMD + CTRL + Z
+# Open the Expo menu in iOS
+Shake device
 ```
