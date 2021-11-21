@@ -42,6 +42,7 @@ export const LiveMap = () => {
             coordinate={parkingSpot.location.coordinates}
             title={parkingSpot.name}
             description={parkingSpot.location.address}
+            image={require('../assets/images/parking-icon.png')}
           />
         ))}
         {carLocation && <Marker
