@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import MapView, { Marker } from 'react-native-maps'
-import { StyleSheet, View, Dimensions } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
+import MapView, { Callout, Marker } from 'react-native-maps'
+import { StyleSheet, View, Dimensions, Text, Button } from 'react-native'
 import { ApiClient } from '../api/ApiClient'
 import { Coordinate, Location, ParkingSpot } from '../domain/core'
+// @ts-ignore
+import parkingIcon from '../assets/images/parking-icon.png'
+import { NavigationProp, useNavigation } from '@react-navigation/native'
+import { RootTabParamList } from '../types'
 
 const defaultDeltas: Pick<Region, 'latitudeDelta' | 'longitudeDelta'> = {
   latitudeDelta: 0.12,
@@ -15,17 +19,21 @@ interface Region extends Coordinate {
 }
 
 export const LiveMap = () => {
-  const apiClient = new ApiClient() // TODO: is there a better place for this? Some sort of hook?
+  const apiClient = useRef(new ApiClient()).current
+  const navigation = useNavigation<NavigationProp<RootTabParamList>>()
 
   const [region, setRegion] = useState<Region | undefined>(undefined)
   const [carLocation, setCarLocation] = useState<Location | undefined>(undefined)
   const [parkingSpots, setParkingSpots] = useState<ParkingSpot[]>([])
   useEffect(() => {
     (async () => {
-      const initialLocation = await apiClient.getCurrentLocation()
+      const [initialLocation, initialParkingSpots] = await Promise.all([
+        apiClient.getCurrentLocation(),
+        apiClient.getParkingSpots()
+      ])
       setRegion({ ...(initialLocation.coordinates), ...defaultDeltas })
       setCarLocation(initialLocation)
-      setParkingSpots(await apiClient.getParkingSpots())
+      setParkingSpots(initialParkingSpots)
     })()
   }, [])
 
@@ -40,10 +48,17 @@ export const LiveMap = () => {
           <Marker
             key={index}
             coordinate={parkingSpot.location.coordinates}
-            title={parkingSpot.name}
-            description={parkingSpot.location.address}
-            image={require('../assets/images/parking-icon.png')}
-          />
+            image={parkingIcon}
+          >
+            <Callout>
+              <Text>{parkingSpot.name}</Text>
+              <Text>{parkingSpot.location.address}</Text>
+              <Button
+                title='Book'
+                onPress={() => navigation.navigate('TabTwo')}
+              />
+            </Callout>
+          </Marker>
         ))}
         {carLocation && <Marker
           key={parkingSpots.length}
