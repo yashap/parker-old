@@ -1,10 +1,10 @@
-import * as WebBrowser from 'expo-web-browser';
-import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import * as WebBrowser from 'expo-web-browser'
+import React from 'react'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 
-import Colors from '../constants/Colors';
-import { MonoText } from './StyledText';
-import { Text, View } from './Themed';
+import Colors from '../constants/Colors'
+import { MonoText } from './StyledText'
+import { Text, View } from './Themed'
 
 interface IProps {
   path: string
@@ -14,24 +14,19 @@ export default function EditScreenInfo({ path }: IProps) {
   return (
     <View>
       <View style={styles.getStartedContainer}>
-        <Text
-          style={styles.getStartedText}
-          lightColor="rgba(0,0,0,0.8)"
-          darkColor="rgba(255,255,255,0.8)">
+        <Text style={styles.getStartedText} lightColor='rgba(0,0,0,0.8)' darkColor='rgba(255,255,255,0.8)'>
           Open up the code for this screen:
         </Text>
 
         <View
           style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-          darkColor="rgba(255,255,255,0.05)"
-          lightColor="rgba(0,0,0,0.05)">
+          darkColor='rgba(255,255,255,0.05)'
+          lightColor='rgba(0,0,0,0.05)'
+        >
           <MonoText>{path}</MonoText>
         </View>
 
-        <Text
-          style={styles.getStartedText}
-          lightColor="rgba(0,0,0,0.8)"
-          darkColor="rgba(255,255,255,0.8)">
+        <Text style={styles.getStartedText} lightColor='rgba(0,0,0,0.8)' darkColor='rgba(255,255,255,0.8)'>
           Change any of the text, save the file, and your app will automatically update.
         </Text>
       </View>
@@ -44,13 +39,11 @@ export default function EditScreenInfo({ path }: IProps) {
         </TouchableOpacity>
       </View>
     </View>
-  );
+  )
 }
 
 function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'
-  );
+  WebBrowser.openBrowserAsync('https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet')
 }
 
 const styles = StyleSheet.create({
@@ -81,4 +74,4 @@ const styles = StyleSheet.create({
   helpLinkText: {
     textAlign: 'center',
   },
-});
+})

@@ -1,9 +1,5 @@
 {
   "version": "0.0.0",
   "npmClient": "yarn",
-  "packages": [
-    "frontend/*",
-    "lib/*",
-    "service/*"
-  ]
+  "packages": ["frontend/*", "lib/*", "service/*"]
 }

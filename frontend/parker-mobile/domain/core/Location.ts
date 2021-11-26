@@ -1,4 +1,4 @@
-import { Coordinate } from "./Coordinate";
+import { Coordinate } from './Coordinate'
 
 export interface Location {
   address?: string

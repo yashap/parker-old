@@ -6,10 +6,10 @@ export class ApiClient {
       coordinates: {
         latitude: 49.2827,
         longitude: -123.1207,
-      }
+      },
     }
   }
-  
+
   async getParkingSpots(): Promise<ParkingSpot[]> {
     return [
       {
@@ -19,8 +19,8 @@ export class ApiClient {
           coordinates: {
             latitude: 49.2483282,
             longitude: -123.0826752,
-          }
-        }
+          },
+        },
       },
       {
         name: 'Work',
@@ -29,8 +29,8 @@ export class ApiClient {
           coordinates: {
             latitude: 49.2863849,
             longitude: -123.1170121,
-          }
-        }
+          },
+        },
       },
     ]
   }

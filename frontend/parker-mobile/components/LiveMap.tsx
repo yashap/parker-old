@@ -10,7 +10,7 @@ import { RootTabParamList } from '../types'
 
 const defaultDeltas: Pick<Region, 'latitudeDelta' | 'longitudeDelta'> = {
   latitudeDelta: 0.12,
-  longitudeDelta: 0.06,  
+  longitudeDelta: 0.06,
 }
 
 interface Region extends Coordinate {
@@ -26,12 +26,12 @@ export const LiveMap = () => {
   const [carLocation, setCarLocation] = useState<Location | undefined>(undefined)
   const [parkingSpots, setParkingSpots] = useState<ParkingSpot[]>([])
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       const [initialLocation, initialParkingSpots] = await Promise.all([
         apiClient.getCurrentLocation(),
-        apiClient.getParkingSpots()
+        apiClient.getParkingSpots(),
       ])
-      setRegion({ ...(initialLocation.coordinates), ...defaultDeltas })
+      setRegion({ ...initialLocation.coordinates, ...defaultDeltas })
       setCarLocation(initialLocation)
       setParkingSpots(initialParkingSpots)
     })()
@@ -39,33 +39,24 @@ export const LiveMap = () => {
 
   return (
     <View style={styles.container}>
-      <MapView
-        initialRegion={region}
-        onRegionChange={setRegion}
-        style={styles.map}
-      >
+      <MapView initialRegion={region} onRegionChange={setRegion} style={styles.map}>
         {parkingSpots.map((parkingSpot, index) => (
-          <Marker
-            key={index}
-            coordinate={parkingSpot.location.coordinates}
-            image={parkingIcon}
-          >
+          <Marker key={index} coordinate={parkingSpot.location.coordinates} image={parkingIcon}>
             <Callout>
               <Text>{parkingSpot.name}</Text>
               <Text>{parkingSpot.location.address}</Text>
-              <Button
-                title='Book'
-                onPress={() => navigation.navigate('TabTwo')}
-              />
+              <Button title='Book' onPress={() => navigation.navigate('TabTwo')} />
             </Callout>
           </Marker>
         ))}
-        {carLocation && <Marker
-          key={parkingSpots.length}
-          coordinate={carLocation.coordinates}
-          title={'Your car'}
-          description={carLocation.address}
-        />}
+        {carLocation && (
+          <Marker
+            key={parkingSpots.length}
+            coordinate={carLocation.coordinates}
+            title={'Your car'}
+            description={carLocation.address}
+          />
+        )}
       </MapView>
     </View>
   )
