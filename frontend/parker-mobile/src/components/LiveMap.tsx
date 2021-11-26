@@ -1,12 +1,12 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Dimensions, StyleSheet, Text, View } from 'react-native'
 import MapView, { Callout, Marker } from 'react-native-maps'
-import { ApiClient } from '../api/ApiClient'
-import parkingIcon from '../assets/images/parking-icon.png'
-import { Coordinate, Location, ParkingSpot } from '../domain/core'
 // @ts-ignore
-import { RootTabParamList } from '../types'
+import parkingIcon from '../../assets/images/parking-icon.png'
+import { RootTabParamList } from '../../types'
+import { ApiClient } from '../api/ApiClient'
+import { Coordinate, Location, ParkingSpot } from '../domain/core'
 
 const defaultDeltas: Pick<Region, 'latitudeDelta' | 'longitudeDelta'> = {
   latitudeDelta: 0.12,
@@ -18,8 +18,9 @@ interface Region extends Coordinate {
   longitudeDelta: number
 }
 
+const apiClient = new ApiClient()
+
 export const LiveMap = () => {
-  const apiClient = useRef(new ApiClient()).current
   const navigation = useNavigation<NavigationProp<RootTabParamList>>()
 
   const [region, setRegion] = useState<Region | undefined>(undefined)
@@ -34,13 +35,17 @@ export const LiveMap = () => {
       setRegion({ ...initialLocation.coordinates, ...defaultDeltas })
       setCarLocation(initialLocation)
       setParkingSpots(initialParkingSpots)
-    })()
+    })().catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error(error) // TODO: toast or something
+    })
   }, [])
 
   return (
     <View style={styles.container}>
       <MapView initialRegion={region} onRegionChange={setRegion} style={styles.map}>
         {parkingSpots.map((parkingSpot, index) => (
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           <Marker key={index} coordinate={parkingSpot.location.coordinates} image={parkingIcon}>
             <Callout>
               <Text>{parkingSpot.name}</Text>

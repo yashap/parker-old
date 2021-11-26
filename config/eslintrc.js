@@ -31,14 +31,6 @@ module.exports = {
     '@typescript-eslint/consistent-type-assertions': 'error',
     '@typescript-eslint/consistent-type-definitions': 'error',
     '@typescript-eslint/explicit-member-accessibility': ['error', { overrides: { constructors: 'no-public' } }],
-    '@typescript-eslint/naming-convention': [
-      'error',
-      {
-        selector: 'interface',
-        format: ['PascalCase'],
-        custom: { regex: '^I[A-Z]', match: true },
-      },
-    ],
     '@typescript-eslint/no-dupe-class-members': 'error',
     '@typescript-eslint/no-empty-interface': ['error', { allowSingleExtends: true }],
     '@typescript-eslint/no-extra-semi': 'off', // does not work well with prettier
@@ -99,28 +91,6 @@ module.exports = {
     'no-else-return': 'error',
     'no-empty': 'error',
     'no-lonely-if': 'error',
-    'no-restricted-imports': [
-      'error',
-      {
-        paths: [
-          {
-            name: 'lodash',
-            importNames: ['flatMap', 'flatten'],
-            message: 'Use native Array methods instead.',
-          },
-        ],
-        patterns: [
-          {
-            group: ['dist'],
-            message: 'Avoid importing from dist folders, import @spare/<package> directly instead',
-          },
-          {
-            group: ['@spare/**/src/**'],
-            message: 'Avoid importing from @spare/<package>/src folders, import @spare/<package> directly instead',
-          },
-        ],
-      },
-    ],
     'no-restricted-properties': ['error', { property: 'forEach' }],
     'no-return-await': 'off', // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/return-await.md#how-to-use
     'no-unused-vars': 'off', // duplicate with the one by unused-imports

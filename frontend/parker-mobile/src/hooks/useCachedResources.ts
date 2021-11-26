@@ -3,30 +3,31 @@ import * as Font from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import * as React from 'react'
 
-export default function useCachedResources() {
+export const useCachedResources = () => {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false)
 
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
-    async function loadResourcesAndDataAsync() {
+    const loadResourcesAndDataAsync = async () => {
       try {
-        SplashScreen.preventAutoHideAsync()
+        void SplashScreen.preventAutoHideAsync()
 
         // Load fonts
         await Font.loadAsync({
           ...FontAwesome.font,
-          'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-require-imports
+          'space-mono': require('../../assets/fonts/SpaceMono-Regular.ttf'),
         })
-      } catch (e) {
-        // We might want to provide this error information to an error reporting service
-        console.warn(e)
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.warn(error)
       } finally {
         setLoadingComplete(true)
-        SplashScreen.hideAsync()
+        void SplashScreen.hideAsync()
       }
     }
 
-    loadResourcesAndDataAsync()
+    void loadResourcesAndDataAsync()
   }, [])
 
   return isLoadingComplete

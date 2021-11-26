@@ -4,16 +4,17 @@
  */
 
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
-import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native'
+import { CompositeScreenProps, NavigatorScreenParams, ParamListBase } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace ReactNavigation {
     interface RootParamList extends RootStackParamList {}
   }
 }
 
-export interface RootStackParamList {
+export interface RootStackParamList extends ParamListBase {
   Root: NavigatorScreenParams<RootTabParamList> | undefined
   Modal: undefined
   NotFound: undefined
@@ -24,12 +25,13 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
   Screen
 >
 
-export interface RootTabParamList {
+export interface RootTabParamList extends ParamListBase {
   LiveMap: undefined
   TabTwo: undefined
 }
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
+  // @ts-ignore
   BottomTabScreenProps<RootTabParamList, Screen>,
   NativeStackScreenProps<RootStackParamList>
 >

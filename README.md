@@ -38,12 +38,15 @@ lerna bootstrap
 lerna run build
 
 # Build a specific module
-lerna run build --scope=my-module
+lerna run build --scope=parker-mobile
 
-# Install module-1 to module-2
-lerna add module-1 --scope=module-2
+# Format
+lerna run format
 
-# Install module-1 to module-2 in devDependencies
+# Like yarn add for the parker-mobile module
+lerna add my-dep --scope=parker-mobile
+
+# Like yarn add --dev for the parker-mobile module
 lerna add module-1 --scope=module-2 --dev
 
 # Remove the node_modules directory from all packages

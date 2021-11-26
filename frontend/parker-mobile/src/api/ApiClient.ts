@@ -1,7 +1,8 @@
 import { Location, ParkingSpot } from '../domain/core'
 
 export class ApiClient {
-  async getCurrentLocation(): Promise<Location> {
+  // eslint-disable-next-line @typescript-eslint/require-await
+  public async getCurrentLocation(): Promise<Location> {
     return {
       coordinates: {
         latitude: 49.2827,
@@ -10,7 +11,8 @@ export class ApiClient {
     }
   }
 
-  async getParkingSpots(): Promise<ParkingSpot[]> {
+  // eslint-disable-next-line @typescript-eslint/require-await
+  public async getParkingSpots(): Promise<ParkingSpot[]> {
     return [
       {
         name: 'Home',

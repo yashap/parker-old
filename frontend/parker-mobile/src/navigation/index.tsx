@@ -9,17 +9,17 @@ import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import * as React from 'react'
 import { ColorSchemeName, Pressable } from 'react-native'
-import Colors from '../constants/Colors'
-import useColorScheme from '../hooks/useColorScheme'
+import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../types'
+import { colors } from '../constants/colors'
+import { useColorScheme } from '../hooks/useColorScheme'
 import { LiveMapScreen } from '../screens/LiveMapScreen'
 import { ModalScreen } from '../screens/ModalScreen'
 import { NotFoundScreen } from '../screens/NotFoundScreen'
 import { TabTwoScreen } from '../screens/TabTwoScreen'
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types'
-import LinkingConfiguration from './LinkingConfiguration'
+import { linkingConfiguration } from './linkingConfiguration'
 
 export const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => (
-  <NavigationContainer linking={LinkingConfiguration} theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+  <NavigationContainer linking={linkingConfiguration} theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
     <RootNavigator />
   </NavigationContainer>
 )
@@ -55,7 +55,7 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName='LiveMap'
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarActiveTintColor: colors[colorScheme].tint,
       }}
     >
       <BottomTab.Screen
@@ -71,7 +71,7 @@ function BottomTabNavigator() {
                 opacity: pressed ? 0.5 : 1,
               })}
             >
-              <FontAwesome name='info-circle' size={25} color={Colors[colorScheme].text} style={{ marginRight: 15 }} />
+              <FontAwesome name='info-circle' size={25} color={colors[colorScheme].text} style={{ marginRight: 15 }} />
             </Pressable>
           ),
         })}
