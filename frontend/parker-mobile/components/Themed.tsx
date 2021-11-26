@@ -5,7 +5,6 @@
 
 import * as React from 'react'
 import { Text as DefaultText, View as DefaultView } from 'react-native'
-
 import Colors from '../constants/Colors'
 import useColorScheme from '../hooks/useColorScheme'
 
@@ -18,12 +17,11 @@ export function useThemeColor(
 
   if (colorFromProps) {
     return colorFromProps
-  } else {
-    return Colors[theme][colorName]
   }
+  return Colors[theme][colorName]
 }
 
-type ThemeProps = {
+interface ThemeProps {
   lightColor?: string
   darkColor?: string
 }

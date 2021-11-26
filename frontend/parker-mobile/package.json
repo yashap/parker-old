@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "serve": "expo start",
-    "serve:android": "expo start --android",
-    "serve:ios": "expo start --ios",
-    "serve:web": "expo start --web",
     "eject": "expo eject",
+    "format": "../../node_modules/.bin/eslint --ext .ts,.tsx --fix .",
+    "serve": "expo start",
     "test": "jest --watchAll"
   },
   "jest": {

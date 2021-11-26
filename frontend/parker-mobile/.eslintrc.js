@@ -14,29 +14,5 @@ module.exports = {
     '@typescript-eslint/no-unsafe-return': 'warn',
     '@typescript-eslint/restrict-template-expressions': 'warn',
     'id-length': 'warn',
-    'no-restricted-imports': [
-      'error',
-      {
-        paths: ['mobx-react', 'moment'],
-        patterns: [
-          {
-            group: ['dist'],
-            message: 'Avoid importing from dist folders, import @spare/<package> directly instead',
-          },
-          {
-            group: ['@spare/**/src/**'],
-            message: 'Avoid importing from @spare/<package>/src folders, import @spare/<package> directly instead',
-          },
-          {
-            group: ['*.native'],
-            message: 'Avoid importing .native files directly',
-          },
-          {
-            group: ['*.web'],
-            message: 'Avoid importing .web files directly',
-          },
-        ],
-      },
-    ],
   },
 }

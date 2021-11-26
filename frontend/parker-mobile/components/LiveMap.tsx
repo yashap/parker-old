@@ -1,11 +1,11 @@
+import { NavigationProp, useNavigation } from '@react-navigation/native'
 import React, { useEffect, useRef, useState } from 'react'
+import { Button, Dimensions, StyleSheet, Text, View } from 'react-native'
 import MapView, { Callout, Marker } from 'react-native-maps'
-import { StyleSheet, View, Dimensions, Text, Button } from 'react-native'
 import { ApiClient } from '../api/ApiClient'
+import parkingIcon from '../assets/images/parking-icon.png'
 import { Coordinate, Location, ParkingSpot } from '../domain/core'
 // @ts-ignore
-import parkingIcon from '../assets/images/parking-icon.png'
-import { NavigationProp, useNavigation } from '@react-navigation/native'
 import { RootTabParamList } from '../types'
 
 const defaultDeltas: Pick<Region, 'latitudeDelta' | 'longitudeDelta'> = {
@@ -53,7 +53,7 @@ export const LiveMap = () => {
           <Marker
             key={parkingSpots.length}
             coordinate={carLocation.coordinates}
-            title={'Your car'}
+            title='Your car'
             description={carLocation.address}
           />
         )}
