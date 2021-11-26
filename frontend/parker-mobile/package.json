@@ -4,7 +4,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "eject": "expo eject",
-    "format": "../../node_modules/.bin/prettier --write --ignore-path ../../.prettierignore . && ../../node_modules/.bin/eslint --config .eslintrc.js --ignore-path .eslintignore --ext .ts,.tsx --fix src/",
+    "format": "../../node_modules/.bin/prettier --write --ignore-path ../../.prettierignore . && ../../node_modules/.bin/eslint --config ./.eslintrc.js --ext .ts,.tsx --fix src/",
     "serve": "expo start",
     "test": "jest --watchAll"
   },
