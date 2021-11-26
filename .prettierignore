@@ -1,5 +1,8 @@
-# Ignore artifacts:
 build
 coverage
-*.yaml
 node_modules
+.expo
+.expo-shared
+
+*.yaml
+*.md
