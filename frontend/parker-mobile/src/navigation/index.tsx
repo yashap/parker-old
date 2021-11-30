@@ -62,7 +62,7 @@ function BottomTabNavigator() {
         name='LiveMap'
         component={LiveMapScreen}
         options={({ navigation }: RootTabScreenProps<'LiveMap'>) => ({
-          title: 'Parker',
+          title: 'Live Map',
           tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
           headerRight: () => (
             <Pressable
