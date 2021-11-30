@@ -19,9 +19,9 @@ export const linkingConfiguration: LinkingOptions<RootStackParamList> = {
               LiveMapScreen: 'liveMap',
             },
           },
-          TabTwo: {
+          ParkingDetails: {
             screens: {
-              TabTwoScreen: 'two',
+              ParkingDetailsScreen: 'parkingDetails',
             },
           },
         },

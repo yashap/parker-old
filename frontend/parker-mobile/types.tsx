@@ -27,7 +27,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
 
 export interface RootTabParamList extends ParamListBase {
   LiveMap: undefined
-  TabTwo: undefined
+  ParkingDetails: undefined
 }
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

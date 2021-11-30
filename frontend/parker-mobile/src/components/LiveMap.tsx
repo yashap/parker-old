@@ -50,7 +50,7 @@ export const LiveMap = () => {
             <Callout>
               <Text>{parkingSpot.name}</Text>
               <Text>{parkingSpot.location.address}</Text>
-              <Button title='Book' onPress={() => navigation.navigate('TabTwo')} />
+              <Button title='Book' onPress={() => navigation.navigate('ParkingDetails')} />
             </Callout>
           </Marker>
         ))}

@@ -37,7 +37,7 @@ lerna bootstrap
 # Runs `yarn build` in every frontend/lib/service
 lerna run build
 
-# Build a specific module
+# Build a specific module (e.g. parker-mobile)
 lerna run build --scope=parker-mobile
 
 # Format
@@ -47,7 +47,7 @@ lerna run format
 lerna add my-dep --scope=parker-mobile
 
 # Like yarn add --dev for the parker-mobile module
-lerna add module-1 --scope=module-2 --dev
+lerna add my-dep --scope=parker-mobile --dev
 
 # Remove the node_modules directory from all packages
 lerna clean

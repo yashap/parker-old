@@ -15,7 +15,7 @@ import { useColorScheme } from '../hooks/useColorScheme'
 import { LiveMapScreen } from '../screens/LiveMapScreen'
 import { ModalScreen } from '../screens/ModalScreen'
 import { NotFoundScreen } from '../screens/NotFoundScreen'
-import { TabTwoScreen } from '../screens/TabTwoScreen'
+import { ParkingDetailsScreen } from '../screens/ParkingDetailsScreen'
 import { linkingConfiguration } from './linkingConfiguration'
 
 export const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => (
@@ -77,10 +77,10 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name='TabTwo'
-        component={TabTwoScreen}
+        name='ParkingDetails'
+        component={ParkingDetailsScreen}
         options={{
-          title: 'Tab Two',
+          title: 'Parking Details',
           tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
         }}
       />
